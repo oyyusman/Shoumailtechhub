@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoumail Tech Hub | Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --secondary: #4b5563;
+            --light: #f8fafc;
+            --lighter: #f1f5f9;
+            --border: #e2e8f0;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --success: #10b981;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Roboto', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: relative;
+            /* Added for mobile menu positioning */
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+            z-index: 101;
+            /* Ensure it stays above other elements */
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: var(--text);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1.05rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Section Headings */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .article-img {
+            height: 200px;
+            width: 100%;
+            background-color: var(--lighter);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .article-category {
+            display: inline-block;
+            background-color: var(--lighter);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .article-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .article-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        /* Categories Section */
+        .categories {
+            margin-bottom: 80px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background-color: var(--lighter);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .category-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--primary);
+            padding: 70px 0;
+            margin-bottom: 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 6px 0 0 6px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background-color: var(--text);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 0 6px 6px 0;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background-color: #0f172a;
+        }
+
+        /* Footer */
+        footer {
+            background-color: white;
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-about {
+            flex: 2;
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-about p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--lighter);
+            border-radius: 50%;
+            color: var(--text);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .footer-links h3 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            text-decoration: none;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design - Fixed Issues */
+        @media (max-width: 992px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-about {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .footer-links {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 10px;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+            }
+
+            nav ul.mobile-active {
+                display: flex;
+            }
+
+            nav ul li {
+                /* margin: 1px 0; */
+            }
+
+            nav ul li a {
+                display: flex;
+                /* padding: 1px 0; */
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: relative;
+                margin: 5px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .newsletter-form input,
+            .newsletter-form button {
+                width: 100%;
+                border-radius: 6px;
+                height: 50px;
+                /* Consistent height */
+            }
+
+            .newsletter-form button {
+                padding: 15px;
+                /* More touch-friendly */
+            }
+
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+                /* Two columns on mobile */
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 70px 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 2fr;
+            }
+
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+                /* Single column on very small screens */
+            }
+        }
+
+        /* Added for mobile menu close icon */
+        .mobile-menu-btn .fa-bars,
+        .mobile-menu-btn .fa-times {
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn .fa-times {
+            display: none;
+        }
+
+        .mobile-active~.mobile-menu-btn .fa-bars {
+            display: none;
+        }
+
+        .mobile-active~.mobile-menu-btn .fa-times {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Shoumail <span>Tech Hub</span></a>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tech-news.html">Tech News</a></li>
+                    <li><a href="gadgets.html">Gadgets</a></li>
+                    <li><a href="ai.html">AI</a></li>
+                    <li><a href="social-media.html">Social Media</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="toolkit.html">Toolkit</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-times"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Welcome to Shoumail Tech Hub</h1>
+            <p>Explore the Latest in Technology, AI, and Gadgets</p>
+            <a href="tech-news.html" class="btn">Explore Articles</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Latest Articles -->
+        <section id="articles">
+            <div class="section-title">
+                <h2>Latest Articles</h2>
+            </div>
+            <div class="articles-grid">
+                <!-- Article 1 -->
+                <article class="article-card">
+                    <div class="article-img"
+                        style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80');">
+                    </div>
+                    <div class="article-content">
+                        <span class="article-category">Tech News</span>
+                        <h3>New Smartphone Innovations Changing the Market</h3>
+                        <p>Discover how foldable screens and AI-powered cameras are revolutionizing mobile technology
+                            and consumer expectations.</p>
+                        <a href="tech-news.html" class="btn btn-outline">Learn More</a>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="article-card">
+                    <div class="article-img"
+                        style="background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80');">
+                    </div>
+                    <div class="article-content">
+                        <span class="article-category">Gadgets</span>
+                        <h3>Top 10 Wearable Tech Devices of 2023</h3>
+                        <p>From smartwatches to health trackers, explore the most innovative wearable gadgets enhancing
+                            our daily lives.</p>
+                        <a href="gadgets.html" class="btn btn-outline">Learn More</a>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="article-card">
+                    <div class="article-img"
+                        style="background-image: url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=600&q=80');">
+                    </div>
+                    <div class="article-content">
+                        <span class="article-category">AI</span>
+                        <h3>AI in Agriculture: Precision Farming Solutions</h3>
+                        <p>How AI is helping farmers optimize crops and reduce environmental impact.</p>
+                        <a href="ai.html" class="btn btn-outline">Learn More</a>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="article-card">
+                    <div class="article-img"
+                        style="background-image: url('https://images.unsplash.com/photo-1562147458-0c12e8d29f50?auto=format&fit=crop&w=600&q=80');">
+                    </div>
+                    <div class="article-content">
+                        <span class="article-category">Social Media</span>
+                        <h3>The Rise of Video-First Social Platforms</h3>
+                        <p>How TikTok's success has influenced major platforms to prioritize short-form video content in
+                            their algorithms.</p>
+                        <a href="social-media.html" class="btn btn-outline">Learn More</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Categories Preview -->
+        <section class="categories">
+            <div class="section-title">
+                <h2>Explore Categories</h2>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3>Tech News</h3>
+                    <p>Latest updates from the tech industry, product launches, and market trends.</p>
+                    <a href="tech-news.html" class="btn btn-outline">View Articles</a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Gadgets</h3>
+                    <p>Reviews and insights on the newest gadgets, wearables, and smart devices.</p>
+                    <a href="gadgets.html" class="btn btn-outline">View Articles</a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI</h3>
+                    <p>Artificial intelligence advancements, machine learning, and automation.</p>
+                    <a href="ai.html" class="btn btn-outline">View Articles</a>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <h3>Social Media</h3>
+                    <p>Platform updates, digital marketing strategies, and online community trends.</p>
+                    <a href="social-media.html" class="btn btn-outline">View Articles</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <section class="newsletter" id="about">
+        <div class="container">
+            <h2>Welcome to Shoumail Tech Hub!</h2>
+            <p>This platform shares insightful content about technology, artificial intelligence, gadgets, and social
+                media trends.
+                We aim to bring the latest updates and helpful content to tech lovers across the globe.</p>
+        </div>
+    </section>
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Stay Updated with Tech Trends</h2>
+            <p>Subscribe to our newsletter for the latest tech news, gadget reviews, and AI insights delivered to your
+                inbox weekly.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo">Shoumail Tech Hub</a>
+                    <p>Bringing the latest tech news, gadget reviews, AI insights, and social media trends to tech
+                        enthusiasts worldwide since 2020.</p>
+                    <div class="social-icons">
+                        <a href="https://wa.me/+92331923903" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://x.com/shoumail_arshad?s=21" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/shoumailbro?igsh=MXJlYm9pbDlkMTFzcA%3D%3D&utm_source=qr"
+                            target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="tech-news.html">Tech News</a></li>
+                            <li><a href="gadgets.html">Gadgets</a></li>
+                            <li><a href="ai.html">AI</a></li>
+                            <li><a href="social-media.html">Social Media</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="index.html#about">About</a></li>
+                            <li><a href="toolkit.html">Toolkit</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Shoumail Tech Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('mobile-active');
+            document.body.classList.toggle('no-scroll');
+        });
+
+        // Close menu when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 &&
+                !e.target.closest('nav') &&
+                navMenu.classList.contains('mobile-active')) {
+                navMenu.classList.remove('mobile-active');
+                document.body.classList.remove('no-scroll');
+            }
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('mobile-active');
+                    document.body.classList.remove('no-scroll');
+                }
+            });
+        });
+
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('input').value;
+            alert(`Thank you for subscribing with: ${email}`);
+            newsletterForm.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

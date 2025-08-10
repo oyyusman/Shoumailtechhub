@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Online Tools | Shoumail Tech Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --secondary: #4b5563;
+            --light: #f8fafc;
+            --lighter: #f1f5f9;
+            --border: #e2e8f0;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --success: #10b981;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+            --tool-icon-bg: #e0f2fe;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Roboto', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* Category Hero */
+        .category-hero {
+            background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(37, 99, 235, 0.85)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .category-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .category-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            margin: 0 10px;
+            opacity: 0.6;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* 4 columns on large screens */
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            /* Changed to 100% for consistency */
+            border: 1px solid var(--border);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.15);
+        }
+
+        .tool-icon {
+            background-color: var(--tool-icon-bg);
+            color: var(--primary);
+            padding: 25px 0;
+            text-align: center;
+            font-size: 2.5rem;
+            transition: var(--transition);
+        }
+
+        .tool-card:hover .tool-icon {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .tool-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .tool-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        .tool-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            text-align: center;
+            align-self: flex-start;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn i {
+            margin-left: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: white;
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-about {
+            flex: 2;
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-about p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--lighter);
+            border-radius: 50%;
+            color: var(--text);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .footer-links h3 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            text-decoration: none;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .tools-grid {
+                grid-template-columns: repeat(3, 1fr);
+                /* 3 columns on medium screens */
+            }
+        }
+
+        @media (max-width: 992px) {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 columns on tablets */
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-about {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .footer-links {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 15px;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+                gap: 10px;
+            }
+
+            nav ul.mobile-active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 0;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 12px 15px;
+                border-radius: 6px;
+            }
+
+            nav ul li a:hover {
+                background-color: var(--lighter);
+            }
+
+            nav ul li a::after {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                margin: 2px;
+            }
+
+            .category-hero {
+                padding: 60px 0;
+            }
+
+            .category-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+                /* 1 column on mobile */
+            }
+
+            .category-hero {
+                padding: 50px 0;
+            }
+
+            .category-hero h1 {
+                font-size: 2rem;
+            }
+
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Shoumail <span>Tech Hub</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tech-news.html">Tech News</a></li>
+                    <li><a href="gadgets.html">Gadgets</a></li>
+                    <li><a href="ai.html">AI</a></li>
+                    <li><a href="social-media.html">Social Media</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="toolkit.html" class="active">Toolkit</a></li>
+                </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Tools Hero -->
+    <section class="category-hero">
+        <div class="container">
+            <h1>Free Online Tools</h1>
+            <p>Powerful utilities to enhance your productivity, creativity, and digital experience</p>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <a href="tools.html">Tools</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <main class="container">
+        <div class="tools-grid">
+            <!-- Tool Card 1 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>YouTube Video Downloader</h3>
+                    <p>Download YouTube videos in multiple formats including MP4, WEBM, and 3GP. Supports HD quality.
+                    </p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 2 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-image"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>YouTube Thumbnail Downloader</h3>
+                    <p>Get high-quality thumbnails from any YouTube video in multiple resolutions.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 3 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Instagram Downloader</h3>
+                    <p>Download Instagram photos, videos, reels, and IGTV content in original quality.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 4 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fab fa-twitter"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Twitter Downloader</h3>
+                    <p>Download videos and GIFs from Twitter tweets with just a few clicks.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 5 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fab fa-facebook"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Facebook Downloader</h3>
+                    <p>Download Facebook videos from public pages, groups, and profiles in HD quality.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 6 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Text Editors</h3>
+                    <p>Free online text editors with formatting options, syntax highlighting, and real-time
+                        collaboration.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 7 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-font"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Fancy Fonts Generator</h3>
+                    <p>Create stylish and decorative text with our collection of fancy fonts for social media.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 8 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-window-restore"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>iFrame Maker</h3>
+                    <p>Generate responsive iframe code for embedding videos, maps, and other web content.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 9 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-rainbow"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Rainbow Text Generator</h3>
+                    <p>Create colorful rainbow text effects for social media bios, posts, and websites.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 10 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Gradient Generator</h3>
+                    <p>Create beautiful CSS gradients with our visual editor and export the CSS code.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 11 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>HTML Editor</h3>
+                    <p>Online HTML editor with live preview, syntax highlighting, and code validation.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 12 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Highlight Search</h3>
+                    <p>Highlight specific words or phrases on any webpage for easy reading and analysis.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 13 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>QR Code Generator</h3>
+                    <p>Create custom QR codes for URLs, text, contact information, and more.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 14 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Voice to Text</h3>
+                    <p>Convert your speech to text in real-time with our voice recognition tool.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 15 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-icons"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Favicon Maker</h3>
+                    <p>Create and download favicon images for your website in multiple sizes and formats.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+
+            <!-- Tool Card 16 -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-text-height"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Text Logo Maker</h3>
+                    <p>Design professional text logos with custom fonts, colors, and effects.</p>
+                    <!-- <a href="#" class="btn">Use Tool <i class="fas fa-arrow-right"></i></a> -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo">Shoumail Tech Hub</a>
+                    <p>Bringing the latest tech news, gadget reviews, AI insights, and free tools to tech enthusiasts
+                        worldwide since 2020.</p>
+                    <div class="social-icons">
+                        <a href="https://wa.me/+92331923903" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://x.com/shoumail_arshad?s=21" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/shoumailbro?igsh=MXJlYm9pbDlkMTFzcA%3D%3D&utm_source=qr"
+                            target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="tech-news.html">Tech News</a></li>
+                            <li><a href="gadgets.html">Gadgets</a></li>
+                            <li><a href="ai.html">AI</a></li>
+                            <li><a href="social-media.html">Social Media</a></li>
+                            <li><a href="toolkit.html">Toolkit</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="toolkit.html">Toolkit</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Shoumail Tech Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('nav ul');
+
+            mobileMenuBtn.addEventListener('click', function () {
+                navMenu.classList.toggle('mobile-active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    navMenu.classList.remove('mobile-active');
+                }
+            });
+
+            // Highlight active page in navigation
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('nav a');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
